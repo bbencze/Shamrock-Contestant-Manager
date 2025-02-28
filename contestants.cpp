@@ -34,6 +34,10 @@ void Contestant::display(){
     }
 }
 
+int Contestant::get_number(){
+    return number;
+}
+
 //Kid class functions
 //default contructor
 Kid::Kid(): Contestant(), age(0), parent("Unknown"){}

@@ -1,28 +1,32 @@
-#include "contestants.h"
+#include "BST.h"
 #include <iostream>
 
 using namespace std;
 
 int main(){
-    Contestant rider("Mike Bencze", 729);
-    Kid kid_rider("Eli Tomac", 3, 14, "John");
-    Vintage vintage_rider("Malcolm Smith", 2, 1971);
-    GPRacer GPrider("Ricky Carmichael", 4, true);
+    auto rider1 = make_unique<Contestant>("Mike Bencze", 729);
+    auto rider2 = make_unique<Kid>("Eli Tomac", 1, 10, "John");
+    auto rider3 = make_unique<Vintage>("Malcolm Smith", 2, 1971);
+    auto rider4 = make_unique<GPRacer>("Ricky Carmichael", 4, true);
 
-    rider.start();
-    kid_rider.start();
-    vintage_rider.start();
-    GPrider.start();
+    ContestantBST bst;
 
-    rider.stop(true, 34);
-    kid_rider.stop(true, 42);
-    vintage_rider.stop(true, 38);
-    GPrider.stop(true, 27);
+    bst.insert(move(rider1));
+    bst.insert(move(rider2));
+    bst.insert(move(rider3));
+    bst.insert(move(rider4));
 
-    rider.display();
-    kid_rider.display();
-    vintage_rider.display();
-    GPrider.display();
+    cout<<"All contestants sorted by number\n";
+    bst.display();
+
+    cout<<"\nRemoving Rider #1 (Eli Tomac)\n";
+    bst.remove(1);
+
+    cout<<"Remaining Contestants: \n";
+    bst.display();
+
+    cout<<"Removing all contestants\n";
+    bst.removeAll();
 
 
     return 0;

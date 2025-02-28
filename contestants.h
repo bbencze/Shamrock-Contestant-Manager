@@ -10,6 +10,7 @@ class Contestant{
         void start();
         void stop (bool finish, int time);
         virtual void display();
+        int get_number();
 
     protected:
         bool started;
