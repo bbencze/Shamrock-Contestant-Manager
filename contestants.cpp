@@ -1,3 +1,6 @@
+//Bee Bencze
+//bencze@pdx.edu
+
 #include "contestants.h"
 using namespace std;
 
@@ -13,22 +16,27 @@ Contestant::Contestant(){
 
 //Start
 void Contestant::start(){
+    cout<<name<<" has started their race!\n=-=-=-=-=-=-=-=-=-=\n"<<endl;
     started = true;
 }
 
 //Stop
 void Contestant::stop(bool finish, int time){
-    finished = true;
-    if(finish){
-        finish_time = time;
+    if(started){
+        finished = true;
+        if(finish){
+            finish_time = time;
+        }
+    }else{
+        cout<<"This rider has not yet started their race!\n=-=-=-=-=-=-=-=-=-=\n"<<endl;
     }
 }
 
 //Display
 void Contestant::display(){
-    cout<<"Rider #"<<number<<endl<<"Name: "<<name<<endl;
+    cout<<"\n=-=-=-=-=-=-=-=-=-=\nRider #"<<number<<endl<<"Name: "<<name<<endl;
     if(finished){
-        cout<<"Finishing time: "<<finish_time<<" Minutes\n"<<endl;
+        cout<<"Finishing time: "<<finish_time<<" Minutes"<<endl;
     }else{
         cout<<endl;
     }
@@ -47,9 +55,9 @@ Kid::Kid(string a_name, int a_number, int the_age, string parent_name):
 
 //display
 void Kid::display(){
-    cout<<"Kid's Class Rider #"<<number<<endl<<"Name: "<<name<<endl<<"Age: "<<age<<endl<<"Parent Name: "<<parent<<endl;
+    cout<<"\n=-=-=-=-=-=-=-=-=-=\nKid's Class Rider #"<<number<<endl<<"Name: "<<name<<endl<<"Age: "<<age<<endl<<"Parent Name: "<<parent<<endl;
     if(finished){
-        cout<<"Finishing time: "<<finish_time<<" Minutes\n"<<endl;
+        cout<<"Finishing time: "<<finish_time<<" Minutes"<<endl;
     }else{
         cout<<endl;
     }
@@ -64,9 +72,9 @@ Vintage::Vintage(string a_name, int a_number, int the_year):
 
 //display:
 void Vintage::display(){
-    cout<<"Vintage Class Rider #"<<number<<endl<<"Name: "<<name<<endl<<"Bike Year: "<<bike_year<<endl;
+    cout<<"\n=-=-=-=-=-=-=-=-=-=\nVintage Class Rider #"<<number<<endl<<"Name: "<<name<<endl<<"Bike Year: "<<bike_year<<endl;
     if(finished){
-        cout<<"Finishing time: "<<finish_time<<" Minutes\n"<<endl;
+        cout<<"Finishing time: "<<finish_time<<" Minutes"<<endl;
     }else{
         cout<<endl;
     }
@@ -83,7 +91,7 @@ GPRacer::GPRacer(string a_name, int a_number, bool is_pro):
 
 //display:
 void GPRacer::display(){
-    cout<<"Vintage Class Rider #"<<number<<endl<<"Name: "<<name<<endl<<"Pro Status: ";
+    cout<<"=-=-=-=-=-=-=-=-=-=\nGrand Prix Class Rider #"<<number<<endl<<"Name: "<<name<<endl<<"Pro Status: ";
     if(pro){
         cout<<" Pro"<<endl;
     }else{
@@ -91,8 +99,20 @@ void GPRacer::display(){
     }
 
     if(finished){
-        cout<<"Finishing time: "<<finish_time<<" Minutes\n"<<endl;
+        cout<<"Finishing time: "<<finish_time<<" Minutes"<<endl;
     }else{
         cout<<endl;
+    }
+}
+
+//check pro status using RTTI
+void GPRacer::checkProStatus(){
+
+    cout << "Checking Pro status for: " << name << "\n"; 
+    if (typeid(*this) == typeid(GPRacer)) {
+        cout << "This is a GP Racer, ";
+        cout << (pro ? "Professional" : "Amateur") << " racer.\n=-=-=-=-=-=-=-=-=-=\n\n";
+    } else {
+        cout << "Not a GP Racer.\n=-=-=-=-=-=-=-=-=-=\n\n"; 
     }
 }
